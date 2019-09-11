@@ -79,3 +79,22 @@ page.addEventListener('click', event => {
 })
 
 images.forEach((el) => el.addEventListener('click', event => event.target.style.visibility = 'hidden'));
+
+
+// assign a random color to the background any time the window is resized
+
+const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'pink', 'darkorchid', 'teal', 'dodgerblue', 'crimson', 'orchid'];
+
+const randomColor = arr => {
+    page.style.backgroundColor = arr[Math.floor((Math.random() * 10) + 1)]
+}
+
+window.addEventListener('resize', () => randomColor(colors));
+
+
+//Nav changes color when mouse enters and returns to default on leave
+const headerNav = document.querySelector('.main-navigation');
+
+headerNav.addEventListener('mouseenter', (event) => event.target.style.backgroundColor = '#FFEBCD');
+
+headerNav.addEventListener('mouseleave', (event) => event.target.style.backgroundColor = '');
