@@ -37,12 +37,13 @@ let navThird = document.getElementsByTagName('a')[2];
 let navFourth = document.getElementsByTagName('a')[3];
 
 //Create the event listener
-headNavTags.addEventListener('dblclick', function(event) {
+headNavTags.addEventListener('click', function(event) {
     navFirst.style.color = 'white';
     navSecond.style.color = 'white';
     navThird.style.color = 'white';
     navFourth.style.color = 'white';
-    event.stopPropagation();
+    //event.stopPropagation(); //updated to use preventDefault
+    event.preventDefault(); //use preventDefault (more clever way);
 });
 
 //Focus/blur
