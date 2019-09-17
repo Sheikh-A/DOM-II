@@ -1,32 +1,91 @@
 // Your code goes here
 
-//Mouseover
-//Establishing our variables
 
-//Connets the JS to the HTML file
-let topHead = document.querySelector('.main-navigation');
 
-//Create the event listener
-topHead.addEventListener('mouseover', function(event) {
-    event.target.style.backgroundColor = 'Red';
-})
 
-//Click
-//Establishing our variables
 
-//Connets the JS to the HTML file
-const origImg = document.querySelector('.intro img');
-//Allows our new var to have access to the alternate img tags
-const alternateImgInfo = origImg.alt;
+const allBusImages = document.querySelectorAll('img');
 
-//Create the event listener
-origImg.addEventListener('click', function(event) {
-    window.alert(`${alternateImgInfo}`)
-    event.stopPropagation()
+allBusImages.forEach((image) => {
+  image.addEventListener('mouseenter', (event) => {
+    image.style.transform = 'scale(1.1)';
+    image.style.transition = 'transform 0.5s';
+    console.log(event.target);
+  });
+
+  image.addEventListener('mouseleave', (event) => {
+    image.style.transform = 'scale(1.0)';
+    image.style.transition = 'transform 0.5s';
+    console.log(event.target);
+  });
 });
 
-//dblClick
-//Establishing our variables
+
+const textTop = document.querySelectorAll('p');
+textTop.forEach((text) => {
+  text.addEventListener('mouseover', (event) => {
+    event.target.style.color = 'orange';
+  });
+});
+
+
+// const textTop = document.querySelector('.intro p');
+//
+// textTop.addEventListener('mouseover', (event) => {
+//     event.target.style.color = 'orange';
+//   });
+
+const link = document.querySelector('img');
+  link.addEventListener('click', (event) => {
+    console.log('link was clicked');
+    console.log(event.target);
+    event.preventDefault();
+  });
+
+
+// keydown
+const log = document.querySelector('p');
+  document.addEventListener('keydown', logKey);
+  function logKey(e) {
+    log.textContent += ` ${e.code}`;
+  };
+
+
+
+//Add item
+const body = document.querySelector('body');
+
+const el = document.createElement('div');
+el.style.width = '105px';
+el.style.height = '105px';
+el.style.background = '#cdf';
+el.style.padding = '5px';
+el.style.display = 'flex';
+el.style.justifyContent = 'center';
+el.style.alignContent = 'center';
+el.style.margin = 'auto';
+el.textContent = 'Use Mouse to make me big or SMALL';
+body.append(el);
+
+function zoom(event) {
+  event.preventDefault();
+  scale += event.deltaY * -0.01;
+
+  // Restrict scale
+  scale = Math.min(Math.max(.125, scale), 4);
+
+   // Apply scale transform
+   el.style.transform = `scale(${scale})`;
+}
+
+let scale = 1;
+// const el = document.querySelector('div');
+el.onwheel = zoom;
+
+let topHead = document.querySelector('.main-navigation');
+topHead.addEventListener('mouseover', (event) => {
+  event.target.style.backgroundColor = 'red';
+});
 
 //Connect to the HTML file
 const headNavTags = document.querySelector('.main-navigation');
@@ -46,56 +105,24 @@ headNavTags.addEventListener('click', function(event) {
     event.preventDefault(); //use preventDefault (more clever way);
 });
 
-//Focus/blur
-let allInputFields = document.querySelectorAll('input[type="text"]')
-inputFieldArray = Array.from(allInputFields);
 
-
-  inputFieldArray.forEach(function(inputField) {
-    inputField.addEventListener('focus', function(){
-      event.target.style.background = 'orange';
-      event.stopPropagation();
-    })
-  })
-
-  inputFieldArray.forEach(function(inputField) {
-    inputField.addEventListener('blur', function(){
-      event.target.style.background = 'lightgreen';
-      event.stopPropagation();
-    })
-  });
-
-
-  //Make img's disappear on click and reapper on click anywhere other than img
-const images = document.querySelectorAll('img');
-
-const page = document.querySelector('body')
-
-page.addEventListener('click', event => {
-    images.forEach(function (el) {
-        if (event.target.tagName !== 'IMG') {
-            el.style.visibility = 'visible'
-        }
-    })
-})
-
-images.forEach((el) => el.addEventListener('click', event => event.target.style.visibility = 'hidden'));
-
-
-// assign a random color to the background any time the window is resized
+const page = document.querySelector('body');
 
 const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'pink', 'darkorchid', 'teal', 'dodgerblue', 'crimson', 'orchid'];
 
 const randomColor = arr => {
-    page.style.backgroundColor = arr[Math.floor((Math.random() * 10) + 1)]
+  page.style.backgroundColor = arr[Math.floor((Math.random()*10) +1)]
 }
 
 window.addEventListener('resize', () => randomColor(colors));
 
 
-//Nav changes color when mouse enters and returns to default on leave
-const headerNav = document.querySelector('.main-navigation');
 
-headerNav.addEventListener('mouseenter', (event) => event.target.style.backgroundColor = '#FFEBCD');
 
-headerNav.addEventListener('mouseleave', (event) => event.target.style.backgroundColor = '');
+ // drag / drop
+ // load
+ // focus
+ // resize
+ // scroll
+ // select
+ // dblclick
